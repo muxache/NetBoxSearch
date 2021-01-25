@@ -7,7 +7,8 @@ import (
 	"net/url"
 	"strconv"
 
-	"./model"
+	"github.com/muxache/NetBoxSearch/model"
+	//"model"
 )
 
 //GetToNetBox send get request to netbox
