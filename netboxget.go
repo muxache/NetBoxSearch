@@ -6,14 +6,10 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
-
-	"github.com/muxache/NetBoxSearch/model"
-	//"github.com/muxache/NetBoxSearch/model"
-	//"model"
 )
 
 //GetToNetBox send get request to netbox
-func GetToNetBox(url, token string) model.NetBoxJSON {
+func GetToNetBox(url, token string) NetBoxJSON {
 	var (
 		limit  int
 		newURL string
@@ -27,7 +23,7 @@ func GetToNetBox(url, token string) model.NetBoxJSON {
 		fmt.Println("Error when sending request to the server")
 	}
 	defer resp.Body.Close()
-	var nb model.NetBoxJSON
+	var nb NetBoxJSON
 	json.NewDecoder(resp.Body).Decode(&nb)
 	if len(nb.Next) != 0 {
 		limit, _ = strconv.Atoi(URLParse(nb.Next)["limit"][0])
@@ -42,7 +38,7 @@ func GetToNetBox(url, token string) model.NetBoxJSON {
 				fmt.Println("Error when sending request to the server")
 			}
 			defer respnext.Body.Close()
-			var pn model.NetBoxJSON
+			var pn NetBoxJSON
 			json.NewDecoder(respnext.Body).Decode(&pn)
 			newURL = pn.Next
 			nb.Results = append(nb.Results, pn.Results...)
