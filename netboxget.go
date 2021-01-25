@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"../model"
+	"./model"
 )
 
 //GetToNetBox send get request to netbox
