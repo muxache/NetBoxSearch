@@ -1,4 +1,4 @@
-package service
+package netboxsearch
 
 import (
 	"encoding/json"
@@ -8,6 +8,7 @@ import (
 	"strconv"
 
 	"github.com/muxache/NetBoxSearch/model"
+	//"github.com/muxache/NetBoxSearch/model"
 	//"model"
 )
 

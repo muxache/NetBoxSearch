@@ -1,4 +1,4 @@
-package model
+package netboxsearch
 
 type NetBoxJSON struct {
 	Count    int       `json:"count"`
