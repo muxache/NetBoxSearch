@@ -1,6 +1,7 @@
 package netboxsearch
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -45,6 +46,25 @@ func GetToNetBox(url, token string) NetBoxJSON {
 		}
 	}
 	return nb
+}
+
+func PUTToNetBoxBras(url, method string, cc interface{}) Results {
+
+	jsonStr, _ := json.Marshal(cc)
+	body := bytes.NewReader([]byte(jsonStr))
+
+	req, err := http.NewRequest(method, url, body)
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Token 037e1253c5d6ee171d36df4bac2fba4ad8444ef7")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Println("Error when sending request to the server")
+	}
+	defer resp.Body.Close()
+	var n Results
+	json.NewDecoder(resp.Body).Decode(&n)
+	return n
 }
 
 //URLParse parses url string
