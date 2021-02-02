@@ -1,7 +1,6 @@
 package netboxsearch
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -48,8 +47,9 @@ func GetToNetBox(url, token string) NetBoxJSON {
 	return nb
 }
 
+<<<<<<< HEAD
 //WriteToNetBox writes json to netbox
-func WriteToNetBox(url, HTTPmethod string, cc interface{}) Results {
+func WriteToNetBox(url, token, HTTPmethod string, cc interface{}) Results {
 
 	jsonStr, _ := json.Marshal(cc)
 	body := bytes.NewReader([]byte(jsonStr))
@@ -57,7 +57,7 @@ func WriteToNetBox(url, HTTPmethod string, cc interface{}) Results {
 	req, err := http.NewRequest(HTTPmethod, url, body)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Token 037e1253c5d6ee171d36df4bac2fba4ad8444ef7")
+	req.Header.Set("Authorization", token)
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		fmt.Println("Error when sending request to the server")
@@ -68,6 +68,8 @@ func WriteToNetBox(url, HTTPmethod string, cc interface{}) Results {
 	return n
 }
 
+=======
+>>>>>>> parent of 80af843... added put/post function
 //URLParse parses url string
 func URLParse(urlField string) url.Values {
 	u, _ := url.Parse(urlField)
