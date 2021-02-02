@@ -15,6 +15,8 @@ type Results struct {
 	NatOutside  int    `json:"nat_outside"`
 	Description string `json:"description"`
 	Prefix      string `json:"prefix"`
+	Vrf         string `json:"vrf"`
+	Site        string `json:"site"`
 	Interface   struct {
 		ID     int    `json:"id"`
 		URL    string `json:"url"`
